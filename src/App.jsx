@@ -1,22 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Split from 'react-split';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [code, setCode] = useState('');
 
   return (
     <>
-      <div className="split-container">
+      <Split className="split-container" sizes={[50, 50]} minSize={200} gutterSize={3}>
         <div className="ls">
-          <textarea name="" id=""></textarea>
-          <button>Submit</button>
+          <textarea name="" id="" value={code}
+          onChange={(e) => {
+            // console.log('New Value:', e.target.value); 
+            setCode(e.target.value);
+          }}>
+          </textarea>
+          <button>Compile</button>
         </div>
         <div className="rs">
           <canvas></canvas>
         </div>
-      </div>
+      </Split>
     </>
   )
 }

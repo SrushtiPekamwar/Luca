@@ -9,10 +9,14 @@
 }
 
 
-
 .split-container {
   display: flex;
   height: 100vh;
+}
+
+.split-container>div {
+  overflow: auto;
+  padding: 0;
 }
 
 .ls {
@@ -35,5 +39,14 @@ textarea{
 }
 
 button{
-  
+  padding: 0.5rem;
+  background-color:  green;
+  color: white;
+  border-radius: 12px;
+  border: 0;
+}
+
+.gutter {
+  background-color: transparent;
+  cursor: col-resize;
 }
