@@ -15,7 +15,7 @@ function App() {
             setCode(e.target.value);
           }}>
           </textarea>
-          <button>Compile</button>
+          <button value={code}>Compile</button>
         </div>
         <div className="rs">
           <canvas></canvas>
