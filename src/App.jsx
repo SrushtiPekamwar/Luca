@@ -20,10 +20,12 @@ function App() {
 
     // Draw a filled circle
     ctx.beginPath();
-    ctx.arc(x, y, 150, 0, 2 * Math.PI); // x, y, radius, startAngle, endAngle
+    ctx.arc(x, y, 150, 0, Math.PI/3); // x, y, radius, startAngle, endAngle
+    ctx.lineTo(x,y);
     ctx.fillStyle = "black"; // Change to any color
     ctx.fill();
   }, []);
+
   return (
     <>
       <Split className="split-container" sizes={[50, 50]} minSize={200} gutterSize={3}>
@@ -34,7 +36,7 @@ function App() {
               setCode(e.target.value);
             }}>
           </textarea>
-          <button value={code}>Compile</button>
+          <button>Compile</button>
         </div>
         <div className="rs">
           <canvas
