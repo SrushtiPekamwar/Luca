@@ -1,5 +1,5 @@
 function parse(code) {
-    const codeLines = code.split(";");
+    const codeLines = code.split("\n");
     console.log(codeLines);
 
     let index = 0
@@ -53,9 +53,8 @@ function parse(code) {
                 }
                 jsonFormat.data.push(jsonValues);
             }
+            index++;
         }
-
-
     }
 
     return jsonFormat;
