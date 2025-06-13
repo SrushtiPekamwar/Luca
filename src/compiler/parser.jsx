@@ -1,5 +1,8 @@
 function parse(code) {
-    const codeLines = code.split("\n");
+    let fineCode = code.replace(/^"|"|{|}|;/g, "")
+    fineCode = fineCode.replace("\t", "")
+    const codeLines = fineCode.split("\n");
+
     console.log(codeLines);
 
     let index = 0
@@ -16,40 +19,56 @@ function parse(code) {
     });
 
     if (tokens[0] == "start") {
+
         jsonFormat.type = redefinedTokens[1]
         jsonFormat.objectTitle = redefinedTokens[2]
         index++;
 
         while (tokens[0] != "end") {
+            console.log(index);
             codeLine = codeLines[index];
             tokens = codeLine.split("=");
+            if (tokens.length == 1) {
+                tokens = tokens[0].split(" ");
+                if (tokens[0] == "end") {
+                    break;
+                }
+            }
             if (tokens[0].trim() == jsonFormat.objectTitle + ".title") {
-                tokens[1].replace(/^"|"/g, "")
+                // tokens[1] = tokens[1].replace(/^"|"/g, "")
                 jsonFormat.displayTitle = tokens[1].trim()
+                index++
                 continue
             }
 
-            if (tokens[0].trim == jsonFormat.objectTitle + ".add") {
-                tokens[1].replace(/^"|"|{|}/g, "")
+            if (tokens[0].trim() == jsonFormat.objectTitle + ".add") {
+                // tokens[1] = tokens[1].replace(/^"|"|{|}/g, "")
 
                 const values = tokens[1].split(",")
 
+                console.log("This are values");
+
+                console.log(values);
+
+
                 if (!isNumeric(values[1])) {
                     console.log("Error : Not Number");
+                    break;
+
                 }
 
                 let jsonValues = {}
 
-                jsonValues.label = values[0]
-                jsonValues.value = values[1]
+                jsonValues.label = values[0].trim()
+                jsonValues.value = values[1].trim()
 
                 if (values.length == 3) {
-                    if (!isHexColor(values[2])) {
+                    if (!isHexColor(values[2].trim())) {
                         console.log("Error : Not Hex Color");
-                        continue
+                        break;
                     }
 
-                    jsonValues.color = values[2]
+                    jsonValues.color = values[2].trim()
                 }
                 jsonFormat.data.push(jsonValues);
             }
