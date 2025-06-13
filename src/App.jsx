@@ -3,6 +3,7 @@ import {
 } from 'react'
 import Split from 'react-split';
 import './App.css'
+import parse from './compiler/parser';
 
 function App() {
   const [code, setCode] = useState('');
@@ -20,11 +21,21 @@ function App() {
 
     // Draw a filled circle
     ctx.beginPath();
-    ctx.arc(x, y, 150, 0, Math.PI/3); // x, y, radius, startAngle, endAngle
-    ctx.lineTo(x,y);
+    ctx.arc(x, y, 150, 0, Math.PI / 3); // x, y, radius, startAngle, endAngle
+    ctx.lineTo(x, y);
     ctx.fillStyle = "black"; // Change to any color
     ctx.fill();
   }, []);
+
+  const handleSubmit = function () {
+    console.log("hey");
+
+    const data = parse(code);
+
+    console.log(data);
+
+
+  }
 
   return (
     <>
@@ -36,7 +47,7 @@ function App() {
               setCode(e.target.value);
             }}>
           </textarea>
-          <button>Compile</button>
+          <button onClick={handleSubmit}>Compile</button>
         </div>
         <div className="rs">
           <canvas
