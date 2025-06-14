@@ -1,5 +1,7 @@
 start pieChart p;
     p.title = "Something";
     p.add = {"label1", 23, #FFFFFF};  
-    p.add = {"label2", 23, #000000};   
+    p.add = {"label2", 20, #000000};  
+    p.add = {"label3, 45};
+    p.add = {"label4", 10};
 end pieChart p;

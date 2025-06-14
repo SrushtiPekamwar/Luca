@@ -30,6 +30,12 @@
   width: 50vw;
 }
 
+.rs>* {
+  max-width: fit-content;
+  max-height: fit-content;
+  margin: auto;
+}
+
 textarea{
   height: 90%;
   width: 100%;
