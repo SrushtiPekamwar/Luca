@@ -1,18 +1,39 @@
-import { useRef, useEffect } from "react";
-
-
+import { useRef, useEffect, useState } from "react";
+import PieChartLegend from "./PieChartLegend";
 
 function PieChart({ data }) {
     const canvasRef = useRef(null);
+    const containerRef = useRef(null);
+    const [canvasSize, setCanvasSize] = useState(0);
+    var values = data.data;
+
+    useEffect(() => {
+        const resizeCanvas = () => {
+            const container = containerRef.current;
+            if (container) {
+                const size = Math.min(container.offsetWidth, container.offsetHeight);
+                setCanvasSize(size);
+            }
+        };
+
+        const observer = new ResizeObserver(resizeCanvas);
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+
 
     useEffect(() => {
 
-        var values = data.data;
         var total = 0;
         var lastend = 0;
         const canvas = canvasRef.current;
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+
+        canvas.height = canvasSize
+        canvas.width = canvasSize
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -31,8 +52,7 @@ function PieChart({ data }) {
                 const color = getRandomHexColor();
                 ctx.fillStyle = color;
                 console.log("color : " + color);
-
-
+                values[i].color = color;
             }
 
             ctx.beginPath();
@@ -52,23 +72,15 @@ function PieChart({ data }) {
 
         }
         console.log("Done");
-
-        // const x = canvas.offsetWidth / 2;
-        // const y = canvas.offsetHeight / 2;
-        // // Clear previous drawings
-
-        // // Draw a filled circle
-        // ctx.beginPath();
-        // ctx.arc(x, y, 150, 0, Math.PI / 3); // x, y, radius, startAngle, endAngle
-        // ctx.lineTo(x, y);
-        // ctx.fillStyle = "black"; // Change to any color
-        // ctx.fill();
     }, [data]);
     return (
-        <canvas
-            ref={canvasRef}
-            style={{ width: "100%", height: "100%", display: "block" }}
-        />
+        <div className="canvas-container" ref={containerRef}>
+            <canvas
+                ref={canvasRef}
+            />
+            <PieChartLegend values={values} />
+        </div>
+
     )
 }
 
