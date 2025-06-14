@@ -1,40 +1,26 @@
 import {
-  useState, useRef, useEffect
+  useState
 } from 'react'
 import Split from 'react-split';
 import './App.css'
 import parse from './compiler/parser';
+import PieChart from './components/PieChart';
 
 function App() {
   const [code, setCode] = useState('');
-  const canvasRef = useRef(null);
 
-  // useEffect(() => {
-  //   const canvas = canvasRef.current;
-  //   const ctx = canvas.getContext("2d");
-  //   canvas.width = canvas.offsetWidth;
-  //   canvas.height = canvas.offsetHeight;
-  //   const x = canvas.offsetWidth / 2;
-  //   const y = canvas.offsetHeight / 2;
-  //   // Clear previous drawings
-  //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const [component, setComponent] = useState();
 
-  //   // Draw a filled circle
-  //   ctx.beginPath();
-  //   ctx.arc(x, y, 150, 0, Math.PI / 3); // x, y, radius, startAngle, endAngle
-  //   ctx.lineTo(x, y);
-  //   ctx.fillStyle = "black"; // Change to any color
-  //   ctx.fill();
-  // }, []);
+
 
   const handleSubmit = function () {
     console.log("hey");
-
     const data = parse(code);
-
     console.log(data);
 
-
+    if (data.type == "pieChart") {
+      setComponent(<PieChart data={data} />)
+    }
   }
 
   return (
@@ -50,10 +36,7 @@ function App() {
           <button onClick={handleSubmit}>Compile</button>
         </div>
         <div className="rs">
-          {/* <canvas
-            ref={canvasRef}
-            style={{ width: "100%", height: "100%", display: "block" }}
-          /> */}
+          {component}
         </div>
       </Split>
     </>
