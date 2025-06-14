@@ -8,14 +8,12 @@ import PieChart from './components/PieChart';
 
 function App() {
   const [code, setCode] = useState('');
-
+  // const [data, setData] = useState({});
   const [component, setComponent] = useState();
-
-
 
   const handleSubmit = function () {
     console.log("hey");
-    const data = parse(code);
+    var data = parse(code);
     console.log(data);
 
     if (data.type == "pieChart") {

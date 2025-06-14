@@ -63,7 +63,7 @@ function PieChart({ data }) {
         // ctx.lineTo(x, y);
         // ctx.fillStyle = "black"; // Change to any color
         // ctx.fill();
-    }, []);
+    }, [data]);
     return (
         <canvas
             ref={canvasRef}
