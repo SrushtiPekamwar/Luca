@@ -5,6 +5,7 @@ import Split from 'react-split';
 import './App.css'
 import parse from './compiler/parser';
 import PieChart from './components/PieChart';
+import ClearScreen from './components/ClearScreen';
 
 function App() {
   const [code, setCode] = useState('');
@@ -21,6 +22,10 @@ function App() {
     }
   }
 
+  const handleClear = function () {
+    setComponent(<ClearScreen />)
+  }
+
   return (
     <>
       <Split className="split-container" sizes={[50, 50]} minSize={200} gutterSize={3}>
@@ -31,7 +36,11 @@ function App() {
               setCode(e.target.value);
             }}>
           </textarea>
-          <button onClick={handleSubmit}>Compile</button>
+          <div className="btns">
+            <button onClick={handleClear}>Clear</button>
+            <button onClick={handleSubmit}>Compile</button>
+          </div>
+
         </div>
         <div className="rs">
           {component}
