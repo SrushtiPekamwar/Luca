@@ -20,8 +20,16 @@ function PieChartLegend({ values }) {
                             }}
                         />
                     </td>
-                    <td>{item.label}</td>
-                    <td>{item.value}</td>
+                    <td style={{
+                        margin: "0",
+                        padding: ".4rem 1rem",
+                        border: "none",
+                    }}>{item.label}</td>
+                    <td style={{
+                        margin: "0",
+                        padding: ".4rem 1rem",
+                        border: "none",
+                    }}>{item.value}</td>
                 </tr>
             ))}
         </tbody>
