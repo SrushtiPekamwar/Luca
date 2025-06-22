@@ -1,8 +1,9 @@
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import './landing.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ss from './assets/ss.png'
+import { SiLeetcode } from "react-icons/si";
 
 function LandingPage() {
     const [spPic, setSpPic] = useState();
@@ -54,9 +55,13 @@ function LandingPage() {
                         <div className="card-content">
 
                             <h3>Srushti Pekamwar</h3>
-                            <div><a href="https://github.com/SrushtiPekamwar/"><FaGithub /></a></div>
+                            <div className="team-links">
 
-                        </div>
+                                <div><a href="https://github.com/SrushtiPekamwar/"><FaGithub /></a></div>
+                                <div><a href="https://linkedin.com/in/srushti%20pekamwar"><FaLinkedin /></a></div>
+                                <div><a href="https://www.leetcode.com/srushti_"><SiLeetcode /></a></div>
+
+                            </div></div>
                     </div>
                     <div className="team-card">
                         <div className="team-img">
@@ -65,9 +70,13 @@ function LandingPage() {
                         <div className="card-content">
 
                             <h3>Swarup Vishwas</h3>
-                            <div><a href="https://github.com/SwarupVishwas18/"><FaGithub /></a></div>
+                            <div className="team-links">
 
-                        </div>
+                                <div><a href="https://github.com/SwarupVishwas18/"><FaGithub /></a></div>
+                                <div><a href="https://www.linkedin.com/in/swarup-vishwas-8895221b9/"><FaLinkedin /></a></div>
+                                <div><a href="https://leetcode.com/u/SwarupVishwas18/"><SiLeetcode /></a></div>
+
+                            </div></div>
                     </div>
                 </div>
 

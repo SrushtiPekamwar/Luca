@@ -15,7 +15,7 @@ a{
     border-radius: 12px;
 }
 
-a:hover{
+nav a:hover{
     background-color: #2b3137;
 }
 
@@ -81,8 +81,13 @@ section.team img {
 }
 
 .team-card {
-    border: 1px solid cadetblue;
     border-radius: 12px;
+    box-shadow: 10px 10px 22px -4px rgba(132,132,132,0.75);
+    transition: all ease-in-out 300ms;
+}
+
+.team-card:hover{
+    transform: translate(-1rem, -1rem);
 }
 
 .card-content {
@@ -96,4 +101,8 @@ section.team img {
 footer {
     padding: 2rem;
     text-align: center;
+}
+
+.team-links {
+    display: flex;
 }
