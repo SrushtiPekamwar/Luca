@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Lexend+Deca:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+  --bg-col-ls : 	#2b3137;
+  --bg-col-rs : #24292e;
+}
+
+*{
+   font-family: "Lexend Deca", sans-serif;
+}
+
+a{
+    color: currentColor;
+    padding: 1rem;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+nav a:hover{
+    background-color: #2b3137;
+}
+
+.header{
+    background-color: #363e45;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.header-content{
+    display: flex;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 3rem;
+}
+
+.header-content  .title {
+    color: cadetblue;
+    padding-bottom:  1rem;
+    border-bottom: 1px solid cadetblue;
+    margin-bottom: 1rem;
+    font-size: 4rem;
+}
+
+.header-content img {
+    border-radius: 12px;
+    border: 1px solid aliceblue;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+section.team h1 {
+    padding: 1rem;
+    border-left: .5rem solid cadetblue;
+}
+
+section.team img {
+    height: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
+}
+
+.team-container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.team-card {
+    border-radius: 12px;
+    box-shadow: 10px 10px 22px -4px rgba(132,132,132,0.75);
+    transition: all ease-in-out 300ms;
+}
+
+.team-card:hover{
+    transform: translate(-1rem, -1rem);
+}
+
+.card-content {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+
+footer {
+    padding: 2rem;
+    text-align: center;
+}
+
+.team-links {
+    display: flex;
+}

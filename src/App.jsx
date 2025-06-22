@@ -1,52 +1,20 @@
-import {
-  useState
-} from 'react'
 import Split from 'react-split';
 import './App.css'
-import parse from './compiler/parser';
-import PieChart from './components/PieChart';
+import PieChart from './components/pie-chart/PieChart';
 import ClearScreen from './components/ClearScreen';
+import DonutChart from './components/donut-chart/DonutChart';
+import { BrowserRouter, Routes, Route } from 'react-router';
+import Editor from './Editor';
+import LandingPage from './Landing';
 
 function App() {
-  const [code, setCode] = useState('');
-  // const [data, setData] = useState({});
-  const [component, setComponent] = useState();
-
-  const handleSubmit = function () {
-    console.log("hey");
-    var data = parse(code);
-    console.log(data);
-
-    if (data.type == "pieChart") {
-      setComponent(<PieChart data={data} />)
-    }
-  }
-
-  const handleClear = function () {
-    setComponent(<ClearScreen />)
-  }
-
   return (
-    <>
-      <Split className="split-container" sizes={[50, 50]} minSize={200} gutterSize={3}>
-        <div className="ls">
-          <textarea name="" id="" value={code}
-            onChange={(e) => {
-              // console.log('New Value:', e.target.value); 
-              setCode(e.target.value);
-            }}>
-          </textarea>
-          <div className="btns">
-            <button onClick={handleClear}>Clear</button>
-            <button onClick={handleSubmit}>Compile</button>
-          </div>
-
-        </div>
-        <div className="rs">
-          {component}
-        </div>
-      </Split>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/editor" element={<Editor />} />
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

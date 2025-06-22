@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --bg-col-ls : #0a0a24;
+  --bg-col-ls : 	#2b3137;
+  --bg-col-rs : #24292e;
 }
 
 * {
@@ -32,6 +33,7 @@
 }
 
 .rs {
+  background-color: var(--bg-col-rs);
   width: 50vw;
 }
 
@@ -39,6 +41,7 @@
   height: 100vh;
   overflow-y: hidden;
   width: 100%;
+  background-color: var(--bg-col-rs);
 
 }
 
@@ -51,6 +54,7 @@
   min-height: 50%;
  display: block;
   margin: auto;
+  background-color: var(--bg-col-rs);
 }
 
 textarea{
@@ -100,10 +104,4 @@ tr, th {
   padding: .2rem;
   border: none;
   margin: 0;
-}
-
-td {
-  margin: 0;
-  padding: .4rem 1rem;
-  border: none;
 }
