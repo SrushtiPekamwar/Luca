@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import DonutChartLegend from "./DonutChartLegend";
 
-function DonutChart({ data }) {
-    const canvasRef = useRef(null);
+function DonutChart({ data, canvasRef }) {
     const containerRef = useRef(null);
     const [canvasSize, setCanvasSize] = useState(0);
     var values = data.data;
