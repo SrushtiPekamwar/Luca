@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
 function PieChartLegend({ values }) {
+
+
+    useEffect(() => {
+        setInterval(() => {
+
+        }, 200)
+    }, [values])
+
     return (<table className="table-legend">
         <thead>
             <tr>

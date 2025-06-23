@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import PieChartLegend from "./PieChartLegend";
 
-function PieChart({ data }) {
-    const canvasRef = useRef(null);
+function PieChart({ data, canvasRef }) {
     const containerRef = useRef(null);
     const [canvasSize, setCanvasSize] = useState(0);
     var values = data.data;
