@@ -3,6 +3,8 @@ function parse(code) {
     fineCode = fineCode.replace("\t", "")
     const codeLines = fineCode.split("\n");
 
+    const predefinedObjectTitles = ["add", "title"]
+
     console.log(codeLines);
 
     let index = 0
@@ -28,20 +30,20 @@ function parse(code) {
             console.log(index);
             codeLine = codeLines[index];
             tokens = codeLine.split("=");
+
             if (tokens.length == 1) {
                 tokens = tokens[0].split(" ");
                 if (tokens[0] == "end") {
                     break;
+                } else {
+                    throw Error("Error at line " + (index + 1))
                 }
-            }
-            if (tokens[0].trim() == jsonFormat.objectTitle + ".title") {
+            } else if (tokens[0].trim() == jsonFormat.objectTitle + ".title") {
                 // tokens[1] = tokens[1].replace(/^"|"/g, "")
                 jsonFormat.displayTitle = tokens[1].trim()
                 index++
                 continue
-            }
-
-            if (tokens[0].trim() == jsonFormat.objectTitle + ".add") {
+            } else if (tokens[0].trim() == jsonFormat.objectTitle + ".add") {
                 // tokens[1] = tokens[1].replace(/^"|"|{|}/g, "")
 
                 const values = tokens[1].split(",")
@@ -52,30 +54,66 @@ function parse(code) {
 
 
                 if (!isNumeric(values[1])) {
-                    console.log("Error : Not Number");
-                    break;
+                    throw Error("Error : Not Number");
 
                 }
 
                 let jsonValues = {}
 
                 jsonValues.label = values[0].trim()
-                jsonValues.value = values[1].trim()
+                jsonValues.value = parseInt(values[1].trim())
+
 
                 if (values.length == 3) {
                     if (!isHexColor(values[2].trim())) {
-                        console.log("Error : Not Hex Color");
-                        break;
+                        throw Error("Error : Not Hex Color at line " + (index + 1));
                     }
 
                     jsonValues.color = values[2].trim()
                 }
                 jsonFormat.data.push(jsonValues);
+            } else {
+                throw Error("Error at line " + (index + 1))
             }
             index++;
         }
     }
+    else {
+        throw Error("Error at line 1");
+    }
 
+    if ("displayTitle" in jsonFormat && "type" in jsonFormat && "data" in jsonFormat && "objectTitle" in jsonFormat) {
+
+        if (jsonFormat.data.length == 0) {
+            throw Error("No  data found!")
+        }
+
+        for (let index = 0; index < jsonFormat.data.length; index++) {
+            const element = jsonFormat.data[index];
+            if (!("label" in element)) {
+                throw Error("Label missing at data " + (index + 1))
+            }
+            if (!("color" in element)) {
+                throw Error("Color missing at data " + (index + 1))
+            }
+            if (!("value" in element)) {
+                throw Error("Value missing at data " + (index + 1))
+            }
+        }
+    } else {
+        if (!("displayTitle" in jsonFormat)) {
+            throw Error("No Title Found")
+        }
+        if (!("type" in jsonFormat)) {
+            throw Error("Type of chart is not mentioned")
+        }
+        if (!("objectTitle" in jsonFormat)) {
+            throw Error("No Object Title Found")
+        }
+        if (!("data" in jsonFormat)) {
+            throw Error("No Data Found")
+        }
+    }
     return jsonFormat;
 }
 
