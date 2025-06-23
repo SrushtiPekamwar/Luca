@@ -17,17 +17,25 @@ function Editor() {
 
     const handleSubmit = function () {
         console.log("hey");
-        var data = parse(code);
-        console.log(data);
+        try {
+            var data = parse(code);
+            console.log(data);
+            if (data.type == "pieChart") {
+                setComponent(<PieChart data={data} canvasRef={canvasRef} />)
+                setCanvasReady(true)
+            }
+            if (data.type == "donutChart") {
+                setComponent(<DonutChart data={data} canvasRef={canvasRef} />)
+                setCanvasReady(true)
+            }
+        } catch (e) {
+            alert(e.message)
+            console.log(e);
 
-        if (data.type == "pieChart") {
-            setComponent(<PieChart data={data} canvasRef={canvasRef} />)
-            setCanvasReady(true)
         }
-        if (data.type == "donutChart") {
-            setComponent(<DonutChart data={data} canvasRef={canvasRef} />)
-            setCanvasReady(true)
-        }
+
+
+
     }
 
     const handleClear = function () {
@@ -51,7 +59,7 @@ function Editor() {
     };
 
     return (
-        <>
+        <div className="editor">
             <Split className="split-container" sizes={[50, 50]} minSize={200} gutterSize={3}>
                 <div className="ls">
                     <textarea name="" id="" value={code}
@@ -71,7 +79,7 @@ function Editor() {
                     {component}
                 </div>
             </Split>
-        </>
+        </div>
     )
 }
 
